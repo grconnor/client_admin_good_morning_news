@@ -7,12 +7,12 @@ import toBase64 from "../modules/toBase64";
 const ArticleForm = () => {
   const [message, setMessage] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-  // const [image, setImage] = useState();
+  const [image, setImage] = useState();
   const history = useHistory();
 
-// const selectImage = (e) => {
-//   setImage(e.target.files[0])
-// };
+  const selectImage = (e) => {
+    setImage(e.target.files[0]);
+  };
 
   const handleCategoryChange = (value) => {
     setSelectedCategory(value);
@@ -20,31 +20,27 @@ const ArticleForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    let encodedImage;
+    let title = e.target.title.value;
+    let teaser = e.target.teaser.value;
+    let content = e.target.content.value;
+    let premium = e.target.premium.checked;
 
-    let encodedImage
-      if (e.target.image.files[0]) {
-        encodedImage = await toBase64(e.target.image.files[0])
-        debugger;
-      }
-
+    if (image) {
+      encodedImage = await toBase64(image);
+    }
     const result = await Article.create(
-      e.target.title.value,
-      e.target.teaser.value,
-      e.target.content.value,
+      title,
+      teaser,
+      content,
       selectedCategory,
-      e.target.premium.checked,
+      premium,
       encodedImage
-    )
-      
-      // if (image) {
-      //   encodedImage = await toBase64(image);
-      // }
-      
+    );
 
-      if (result.status === 200) {
-          history.push("/", { message: result.data.message });
-        } else { 
-
+    if (result.status === 200) {
+      history.push("/", { message: result.data.message });
+    } else {
       setMessage(result);
     }
   };
@@ -98,7 +94,7 @@ const ArticleForm = () => {
                 id="premium"
               />
               <Form.Input
-              // onChange={selectImage}
+                onChange={selectImage}
                 fluid
                 label="Image"
                 placeholder="Image"
