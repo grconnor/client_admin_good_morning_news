@@ -1,19 +1,19 @@
 import axios from "axios";
 
 const Articles = {
-  async create(title, teaser, content, category, premium) {
+  async create(title, teaser, content, category, premium, image) {
     let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
-
     try {
       let result = await axios.post(
         "/admin/articles",
         {
           article: {
-            title: title,
-            teaser: teaser,
-            content: content,
+            title: title.value,
+            teaser: teaser.value,
+            content: content.value,
             category: category,
-            premium: premium,
+            premium: premium.checked,
+            image: image,
           },
         },
 
