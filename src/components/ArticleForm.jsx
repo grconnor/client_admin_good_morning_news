@@ -10,7 +10,7 @@ const ArticleForm = () => {
   const [image, setImage] = useState();
   const history = useHistory();
 
-  const selectImage = (e) => {
+  const selectImage = (e) => {debugger
     setImage(e.target.files[0]);
   };
 
@@ -18,15 +18,15 @@ const ArticleForm = () => {
     setSelectedCategory(value);
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e) => {debugger
     e.preventDefault();
     let encodedImage;
     let title = e.target.title.value;
     let teaser = e.target.teaser.value;
     let content = e.target.content.value;
     let premium = e.target.premium.checked;
-
-    if (image) {
+    debugger
+    if (image) {debugger
       encodedImage = await toBase64(image);
     }
     const result = await Article.create(
