@@ -20,7 +20,8 @@ const ArticleForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    let { title, teaser, content, premium, encodedImage } = e.target;
+    let { title, teaser, content, premium } = e.target;
+    let encodedImage;
 
     if (image) {
       encodedImage = await toBase64(image);
