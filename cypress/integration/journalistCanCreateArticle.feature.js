@@ -36,6 +36,7 @@ describe("Journalist can create article", () => {
         cy.get('[data-cy="category"]').contains("News").click();
         cy.get('[data-cy="content"]').type("Content");
         cy.get('[data-cy="premium"]').click();
+        cy.file_upload("img.png", "#image", "image/png");
       });
       cy.get('[data-cy="save-article"]').contains("Save Article").click();
       cy.get('[data-cy="save-article-message"]').should(
@@ -62,6 +63,7 @@ describe("Journalist can create article", () => {
         cy.get('[data-cy="category"]').click();
         cy.get('[data-cy="category"]').contains("News").click();
         cy.get('[data-cy="content"]').type("Content");
+        cy.file_upload("img.png", "#image", "image/png");
       });
       cy.get('[data-cy="save-article"]').contains("Save Article").click();
       cy.get('[data-cy="save-article-message"]').should(

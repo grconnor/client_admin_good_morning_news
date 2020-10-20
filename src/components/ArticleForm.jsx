@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { Form, Container, Checkbox, Segment, Message } from "semantic-ui-react";
 import Article from "../modules/articles";
 import { useHistory } from "react-router-dom";
+import toBase64 from "../modules/toBase64";
 
 const ArticleForm = () => {
   const [message, setMessage] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [image, setImage] = useState();
   const history = useHistory();
+
+  const selectImage = (e) => {
+    setImage(e.target.files[0]);
+  };
 
   const handleCategoryChange = (value) => {
     setSelectedCategory(value);
@@ -14,12 +20,19 @@ const ArticleForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    let { title, teaser, content, premium } = e.target;
+    let encodedImage;
+
+    if (image) {
+      encodedImage = await toBase64(image);
+    }
     const result = await Article.create(
-      e.target.title.value,
-      e.target.teaser.value,
-      e.target.content.value,
+      title,
+      teaser,
+      content,
       selectedCategory,
-      e.target.premium.checked
+      premium,
+      encodedImage
     );
 
     if (result.status === 200) {
@@ -76,6 +89,15 @@ const ArticleForm = () => {
                 data-cy="premium"
                 label="Premium Article?"
                 id="premium"
+              />
+              <Form.Input
+                onChange={selectImage}
+                fluid
+                label="Image"
+                placeholder="Image"
+                id="image"
+                data-cy="image"
+                type="file"
               />
             </Form.Field>
           </Form.Group>
