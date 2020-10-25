@@ -77,7 +77,7 @@ const ArticleForm = () => {
               fluid
               label="Category"
               options={categoryOptions}
-              onChange={(data) => {
+              onChange={(e, data) => {
                 handleCategoryChange(data.value);
               }}
               placeholder="Category"
@@ -88,7 +88,7 @@ const ArticleForm = () => {
               fluid
               label="Location"
               options={localOptions}
-              onChange={(data) => {
+              onChange={(e, data) => {
                 handleLocationChange(data.value);
               }}
               placeholder="Location"

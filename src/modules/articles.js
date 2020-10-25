@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Articles = {
-  async create(title, teaser, content, category, premium, image) {
+  async create(title, teaser, content, category, premium, image, location) {
     let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
     try {
       let result = await axios.post(
@@ -14,6 +14,7 @@ const Articles = {
             category: category,
             premium: premium.checked,
             image: image,
+            location: location,
           },
         },
 
