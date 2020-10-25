@@ -96,7 +96,7 @@ const ArticleForm = () => {
               id="location"
             />
             <Form.TextArea
-              label="Article"
+              label="Content"
               placeholder="..."
               data-cy="content"
               id="content"
