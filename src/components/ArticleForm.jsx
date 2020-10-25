@@ -6,7 +6,9 @@ import toBase64 from "../modules/toBase64";
 
 const ArticleForm = () => {
   const [message, setMessage] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+
   const [image, setImage] = useState();
   const history = useHistory();
 
@@ -16,6 +18,10 @@ const ArticleForm = () => {
 
   const handleCategoryChange = (value) => {
     setSelectedCategory(value);
+  };
+
+  const handleLocationChange = (value) => {
+    setSelectedLocation(value);
   };
 
   const onSubmit = async (e) => {
@@ -32,7 +38,8 @@ const ArticleForm = () => {
       content,
       selectedCategory,
       premium,
-      encodedImage
+      encodedImage,
+      selectedLocation
     );
 
     if (result.status === 200) {
@@ -69,13 +76,24 @@ const ArticleForm = () => {
             <Form.Select
               fluid
               label="Category"
-              options={options}
-              onChange={(e, data) => {
+              options={categoryOptions}
+              onChange={(data) => {
                 handleCategoryChange(data.value);
               }}
               placeholder="Category"
               data-cy="category"
               id="category"
+            />
+            <Form.Select
+              fluid
+              label="Location"
+              options={localOptions}
+              onChange={(data) => {
+                handleLocationChange(data.value);
+              }}
+              placeholder="Location"
+              data-cy="location"
+              id="location"
             />
             <Form.TextArea
               label="Article"
@@ -115,12 +133,17 @@ const ArticleForm = () => {
   );
 };
 
-const options = [
+const categoryOptions = [
   { key: "m", text: "Sports", value: "sports" },
   { key: "f", text: "Entertainment", value: "entertainment" },
   { key: "o", text: "Weather", value: "weather" },
   { key: "o", text: "Business", value: "business" },
   { key: "o", text: "News", value: "news" },
+];
+
+const localOptions = [
+  { key: "m", text: "Sweden", value: "Sweden" },
+  { key: "f", text: "International", value: "International" },
 ];
 
 export default ArticleForm;

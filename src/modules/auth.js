@@ -1,6 +1,6 @@
 import JtockAuth from "j-tockauth";
 
-let apiUrl = process.env.REACT_APP_AUTH_URL
+let apiUrl = process.env.REACT_APP_AUTH_URL;
 
 const auth = new JtockAuth({
   host: apiUrl,
