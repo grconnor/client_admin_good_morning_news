@@ -34,6 +34,8 @@ describe("Journalist can create article", () => {
         cy.get('[data-cy="teaser"]').type("teaser");
         cy.get('[data-cy="category"]').click();
         cy.get('[data-cy="category"]').contains("News").click();
+        cy.get('[data-cy="location"]').click();
+        cy.get('[data-cy="location"]').contains("Sweden").click();
         cy.get('[data-cy="content"]').type("Content");
         cy.get('[data-cy="premium"]').click();
         cy.file_upload("img.png", "#image", "image/png");

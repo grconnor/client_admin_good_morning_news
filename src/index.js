@@ -9,12 +9,11 @@ import configureStore from "./state/store/configureStore";
 import axios from "axios";
 import "./index.css";
 
-
 const store = configureStore();
 
 window.store = store;
 
-let apiUrl = process.env.REACT_APP_API_URL
+let apiUrl = process.env.REACT_APP_API_URL;
 
 axios.defaults.baseURL = apiUrl;
 
