@@ -18,7 +18,7 @@
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.0"
+    "semantic-ui-react": "^2.0.2"
   },
   "scripts": {
     "start": "PORT=3001 react-scripts start",
